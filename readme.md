@@ -1,5 +1,6 @@
 # Pytorch implementation of Deep Compression
-Pruning + finetuning part is done.
+Dataset: CIFAR10
+Models: VGG16, Resnet18~
 
 ## To start with..
 
@@ -18,11 +19,13 @@ The CIFAR10 trained models are in checkpoint.
 Resnet is still underfitting.
 
 ## To do pruning..
-This will prune the default resnet18 with half parameters.
-
-The pretrained resnet18 should be in checkpoint/ckpt.t7. Accuracy is about 90%.
+This will prune the default resnet18 with 50% parameters of conv2d.
 
 It will do 20 epochs of retraining as well.
+
+The pretrained resnet18 should be in checkpoint/res18.t7. The val accuracy is about 90%.
+
+
 
 ```
 python prune.py
