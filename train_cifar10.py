@@ -58,6 +58,12 @@ if args.net=='res18':
     net = ResNet18()
 elif args.net=='vgg':
     net = VGG('VGG19')
+elif args.net=='res34':
+    net = ResNet34()
+elif args.net=='res50':
+    net = ResNet50()
+elif args.net=='res101':
+    net = ResNet101()
 # net = PreActResNet18()
 # net = GoogLeNet()
 # net = DenseNet121()
