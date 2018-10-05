@@ -9,12 +9,26 @@ clone the repo to your local.
 git clone https://github.com/kentaroy47/Deep-Compression.Pytorch
 ```
 
+The CIFAR10 trained models are in checkpoint.
+
+|VGG|Res18|
+|---|--- |
+|85.8%|89.8%|
+
+Resnet is still underfitting.
+
 ## To do pruning..
 This will prune the default resnet18 with half parameters.
 
 The pretrained resnet18 should be in checkpoint/ckpt.t7. Accuracy is about 90%.
 
 It will do 20 epochs of retraining as well.
+
+*Pruning results for resnet18.*
+
+|no pruning|10% pruned|25% pruned|50% pruned|75% pruned|
+|---|---|---|---|---|
+|89.8%|90.3%|91.2%|91.7%|91.9%|
 
 ```
 python prune.py
