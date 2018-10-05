@@ -45,8 +45,4 @@ python train_cifar10.py
 
 ### TODO:
 
-Pruning
-
-FineTuning
-
-HuffmanCoding
+HuffmanCoding?

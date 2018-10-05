@@ -20,8 +20,6 @@ from utils import progress_bar
 
 import numpy as np
 
-
-
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Pruning')
 parser.add_argument('--loadfile', '-l', default="checkpoint/ckpt.t7",dest='loadfile')
 parser.add_argument('--prune', '-p', default=0.5, dest='prune', help='Parameters to be pruned')
