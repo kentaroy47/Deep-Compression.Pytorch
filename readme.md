@@ -25,8 +25,6 @@ It will do 20 epochs of retraining as well.
 
 The pretrained resnet18 should be in checkpoint/res18.t7. The val accuracy is about 90%.
 
-
-
 ```
 python prune.py
 ```
@@ -61,6 +59,15 @@ If you want to train your own network, do:
 python train_cifar10.py --net vgg
 python train_cifar10.py --net res50
 
+```
+
+## Training script
+YOu can train multiple pruned resnet by script.
+
+Do
+
+```
+sh prune.sh
 ```
 
 ### TODO:
