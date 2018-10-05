@@ -99,6 +99,8 @@ def prune_weights(torchweights):
     return torch.from_numpy(weights).cuda(), masks
     
 # prune weights
+# The pruned weight location is saved in the addressbook and maskbook.
+# These will be used during training to keep the weights zero.
 addressbook=[]
 maskbook=[]
 for k, v in net.state_dict().items():
