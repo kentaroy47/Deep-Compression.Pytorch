@@ -24,15 +24,17 @@ The pretrained resnet18 should be in checkpoint/ckpt.t7. Accuracy is about 90%.
 
 It will do 20 epochs of retraining as well.
 
+```
+python prune.py
+```
+
 *Pruning results for resnet18.*
 
 |no pruning|10% pruned|25% pruned|50% pruned|75% pruned|
 |---|---|---|---|---|
 |89.8%|90.3%|91.2%|91.7%|91.9%|
 
-```
-python prune.py
-```
+
 
 Even with 50% pruned weights, the accuracy is about the same (90%).
 
@@ -52,11 +54,12 @@ If you want to train your own network, do:
 
 ```
 
-# choose what model you want to use by commentouts in the script.
-python train_cifar10.py
+# for vgg. can add mobilenet etc..
+python train_cifar10.py --net vgg
+python train_cifar10.py --net res50
 
 ```
 
 ### TODO:
-
-HuffmanCoding?
+Quantization
+HuffmanCoding
