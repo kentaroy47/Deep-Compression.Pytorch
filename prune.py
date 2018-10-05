@@ -21,12 +21,13 @@ from utils import progress_bar
 import numpy as np
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Pruning')
-parser.add_argument('--loadfile', '-l', default="checkpoint/ckpt.t7",dest='loadfile')
+parser.add_argument('--loadfile', '-l', default="checkpoint/res18.t7",dest='loadfile')
 parser.add_argument('--prune', '-p', default=0.5, dest='prune', help='Parameters to be pruned')
 parser.add_argument('--lr', default=0.01, type=float, help='learning rate')
+parser.add_argument('--net', default='res18')
 args = parser.parse_args()
 
-prune = args.prune
+prune = float(args.prune)
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 best_acc = 0  # best test accuracy
@@ -52,17 +53,11 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False,
 
 # Model
 print('==> Building model..')
-# net = VGG('VGG19')
-net = ResNet18()
-# net = PreActResNet18()
-# net = GoogLeNet()
-# net = DenseNet121()
-# net = ResNeXt29_2x64d()
-# net = MobileNet()
-# net = MobileNetV2()
-# net = DPN92()
-# net = ShuffleNetG2()
-# net = SENet18()
+if args.net=='res18':
+    net = ResNet18()
+elif args.net=='vgg':
+    net = VGG('VGG19')
+    
 net = net.to(device)
 if device == 'cuda':
     net = torch.nn.DataParallel(net)
@@ -183,10 +178,14 @@ def test(epoch):
         }
         if not os.path.isdir('checkpoint'):
             os.mkdir('checkpoint')
-        torch.save(state, './checkpoint/pruned_ckpt.t7')
+        torch.save(state, './checkpoint/pruned-'+args.net+'-ckpt.t7')
         best_acc = acc
+
 
 
 for epoch in range(start_epoch, start_epoch+20):
     train(epoch)
     test(epoch)
+    with open("prune-results-"+str(prune)+'-'+str(args.net)+".txt", "a") as f: 
+        f.write(str(epoch)+"\n")
+        f.write(str(best_acc)+"\n")

@@ -5,6 +5,9 @@ __pycache__/
 *.tar*
 *.pth
 ckpt*
+*t7*
+*.txt
+*cache*
 
 # C extensions
 *.so
