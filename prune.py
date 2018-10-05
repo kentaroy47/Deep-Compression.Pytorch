@@ -134,11 +134,13 @@ def train(epoch):
         loss.backward()
         
         # mask pruned weights 
-        net.save_state_dict(checkpoint['net'])
+        checkpoint['net']=net.state_dict()
+#        print("zeroing..")
+#        print(np.count_nonzero(checkpoint['net'][addressbook[0]].cpu().numpy()))
         for address, mask in zip(addressbook, maskbook):
             print(address)
-            checkpoint['net'][address] = checkpoint['net'][address] * mask
-            
+            checkpoint['net'][address] = torch.from_numpy(checkpoint['net'][address].cpu().numpy() * mask)
+#        print(np.count_nonzero(checkpoint['net'][addressbook[0]].cpu().numpy()))  
         optimizer.step()
 
         train_loss += loss.item()
