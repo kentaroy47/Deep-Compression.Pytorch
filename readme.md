@@ -2,6 +2,10 @@
 Dataset: CIFAR10
 Models: VGG16, Resnet18~
 
+- [x] Image classification
+- [ ] Image segmentation
+- [ ] Image detection
+
 ## To start with..
 
 clone the repo to your local.
