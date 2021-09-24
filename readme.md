@@ -23,13 +23,11 @@ The CIFAR10 trained models are in checkpoint.
 Resnet is still underfitting.
 
 ## To do pruning..
-This will prune the default resnet18 with 50% parameters of conv2d.
-
-It will do 20 epochs of retraining as well.
-
 The pretrained resnet18 should be in checkpoint/res18.t7. The val accuracy is about 90%.
 
 ```
+# This will prune the default resnet18 with 50% parameters of conv2d.
+# It will do 20 epochs of retraining as well.
 python prune.py
 ```
 
@@ -43,32 +41,28 @@ python prune.py
 
 Even with 50% pruned weights, the accuracy is about the same (90%).
 
-You can try arbitary pruning rates with bellow.
-
-This will prune 75% of conv parameters.
-
+You can try arbitary pruning rates:
 
 ```
+# This will prune 75% of conv parameters.
 python prune.py --prune 0.75
 ```
 
 ## To train your own model
-I provided a CIFAR 10 trained resnet18 to get started with.
+I provided a CIFAR 10 trained resnet18 checkpoint to get started with.
 
 If you want to train your own network, do:
 
 ```
 
-# for vgg. can add mobilenet etc..
+# for vgg and resnet50
 python train_cifar10.py --net vgg
 python train_cifar10.py --net res50
 
 ```
 
 ## Training script
-YOu can train multiple pruned resnet by script.
-
-Do
+You can train multiple pruned resnet by script.
 
 ```
 sh prune.sh
